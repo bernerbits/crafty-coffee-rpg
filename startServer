@@ -1,0 +1,3 @@
+#!/bin/sh
+# Requires Python. To test, navigate to localhost:8000
+nohup python -m SimpleHTTPServer > server.log &
