@@ -9,6 +9,9 @@ map_grid =
 
 root.Consts = 
   max_villages: 5
+  player_start: 
+    x: 5
+    y: 5
   map_grid: map_grid
   width: map_grid.width * map_grid.tile.width
   height: map_grid.height * map_grid.tile.height

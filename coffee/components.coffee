@@ -1,5 +1,3 @@
-root = exports ? this
-
 Crafty.c 'Grid',
   init: ->
     @attr
@@ -33,6 +31,8 @@ Crafty.c 'Village',
 
   collect: ->
     @destroy()
+    if Crafty('Village').length == 0
+      Crafty.scene('Victory')
 
 Crafty.c 'PlayerCharacter',
   init: ->
