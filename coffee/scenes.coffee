@@ -23,8 +23,10 @@ Crafty.scene 'Game', ->
 Crafty.scene 'Victory', ->
   text = Crafty.e '2D, DOM, Text'
   text.attr
-    x:15
-    y:15
+    x: 0
+    y: Consts.height/2 - 24
+    w: Consts.width
+  text.css Consts.text_css
   text.text 'Victory!'
 
   @startOver = ->
@@ -32,3 +34,21 @@ Crafty.scene 'Victory', ->
     Crafty.scene 'Game'
   
   @restart_game = @bind 'KeyDown', @startOver
+
+Crafty.scene 'Loading', ->
+  text = Crafty.e '2D, DOM, Text'
+  text.attr
+    x: 0
+    y: Consts.height/2 - 24
+    w: Consts.width
+  text.css Consts.text_css
+  text.text 'Loading...'
+
+  Crafty.load ['assets/16x16_forest_1.gif'], ->
+    Crafty.sprite 16, 'assets/16x16_forest_1.gif',
+      spr_tree:    [0,0]
+      spr_bush:    [1,0]
+      spr_village: [0,1]
+      spr_player:  [1,1]
+
+    Crafty.scene 'Game'

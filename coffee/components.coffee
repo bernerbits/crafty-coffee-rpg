@@ -16,18 +16,15 @@ Crafty.c 'Actor',
 
 Crafty.c 'Tree',
   init: ->
-    @requires 'Actor, Color, Solid'
-    @color 'rgb(20,125,40)'
+    @requires 'Actor, Solid, spr_tree'
 
 Crafty.c 'Bush',
   init: ->
-    @requires 'Actor, Color, Solid'
-    @color 'rgb(20,185,40)'
+    @requires 'Actor, Solid, spr_bush'
 
 Crafty.c 'Village',
-  init: -> 
-    @requires 'Actor, Color'
-    @color 'rgb(170, 125, 40)'
+  init: ->
+    @requires 'Actor, spr_village'
 
   collect: ->
     @destroy()
@@ -36,9 +33,8 @@ Crafty.c 'Village',
 
 Crafty.c 'PlayerCharacter',
   init: ->
-    @requires 'Actor, Fourway, Color, Collision'
+    @requires 'Actor, Fourway, Collision, spr_player'
     @fourway 4
-    @color 'rgb(20,75,40)'
     @onHit 'Solid', @stopMovement
     @onHit 'Village', @visitVillage
     return
