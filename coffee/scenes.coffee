@@ -13,10 +13,13 @@ Crafty.scene 'Game', ->
         if at_edge
           Crafty.e('Tree').at x, y
         else if x != Consts.player_start.x and y != Consts.player_start.y
-          if Math.random() < 0.06
+          rand = Math.random()
+          if rand < 0.02
+            Crafty.e('Village').at x,y if Crafty('Village').length < Consts.max_villages
+          else if rand < 0.03
+            Crafty.e('Tree').at x, y
+          else if rand < 0.06
             Crafty.e('Bush').at x, y
-          else if Math.random() < 0.02 and Crafty('Village').length < Consts.max_villages
-            Crafty.e('Village').at x, y
 
     return
 
@@ -44,7 +47,12 @@ Crafty.scene 'Loading', ->
   text.css Consts.text_css
   text.text 'Loading...'
 
-  Crafty.load ['assets/hunter.gif', 'assets/16x16_forest_1.gif'], ->
+  images = ['assets/hunter.png', 'assets/16x16_forest_1.gif']
+  audio_formats = (f) -> f + fmt for fmt in ['mp3','ogg','aac']
+  audio = audio_formats('assets/door_knock_3x.')
+  assets = [images..., audio...]
+
+  Crafty.load assets, ->
     Crafty.sprite 16, 'assets/16x16_forest_1.gif',
       spr_tree:    [0,0]
       spr_bush:    [1,0]
@@ -53,5 +61,8 @@ Crafty.scene 'Loading', ->
     Crafty.sprite 16, 'assets/hunter.png',
       spr_player: [0,2]
     , 0, 2
+
+    Crafty.audio.add
+      knock: audio_formats('assets/door_knock_3x.')
 
     Crafty.scene 'Game'

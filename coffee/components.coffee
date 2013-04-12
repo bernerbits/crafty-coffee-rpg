@@ -28,6 +28,7 @@ Crafty.c 'Village',
 
   collect: ->
     @destroy()
+    Crafty.audio.play('knock')
     if Crafty('Village').length == 0
       Crafty.scene('Victory')
 
