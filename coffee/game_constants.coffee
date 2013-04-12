@@ -1,8 +1,8 @@
 root = exports ? this
 
 map_grid =
-  width: 32
-  height: 32
+  width: 24
+  height: 16
   tile:
     width: 16
     height: 16

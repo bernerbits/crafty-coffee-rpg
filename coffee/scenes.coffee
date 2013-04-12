@@ -44,11 +44,14 @@ Crafty.scene 'Loading', ->
   text.css Consts.text_css
   text.text 'Loading...'
 
-  Crafty.load ['assets/16x16_forest_1.gif'], ->
+  Crafty.load ['assets/hunter.gif', 'assets/16x16_forest_1.gif'], ->
     Crafty.sprite 16, 'assets/16x16_forest_1.gif',
       spr_tree:    [0,0]
       spr_bush:    [1,0]
       spr_village: [0,1]
-      spr_player:  [1,1]
+
+    Crafty.sprite 16, 'assets/hunter.png',
+      spr_player: [0,2]
+    , 0, 2
 
     Crafty.scene 'Game'

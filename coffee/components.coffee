@@ -33,10 +33,22 @@ Crafty.c 'Village',
 
 Crafty.c 'PlayerCharacter',
   init: ->
-    @requires 'Actor, Fourway, Collision, spr_player'
+    @requires 'Actor, Fourway, Collision, spr_player, SpriteAnimation'
     @fourway 4
     @onHit 'Solid', @stopMovement
     @onHit 'Village', @visitVillage
+    @animate 'PlayerMovingUp',    0, 0, 2
+    @animate 'PlayerMovingRight', 0, 1, 2
+    @animate 'PlayerMovingDown',  0, 2, 2
+    @animate 'PlayerMovingLeft',  0, 3, 2
+
+    animation_speed = 8
+    @bind 'NewDirection', (data) ->
+      @animate 'PlayerMovingRight', animation_speed, -1 if data.x > 0
+      @animate 'PlayerMovingLeft',  animation_speed, -1 if data.x < 0
+      @animate 'PlayerMovingDown',  animation_speed, -1 if data.y > 0
+      @animate 'PlayerMovingUp',    animation_speed, -1 if data.y < 0
+      @stop() if data.x == 0 and data.y == 0
     return
 
   stopMovement: ->
